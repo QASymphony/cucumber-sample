@@ -12,11 +12,5 @@ Cucumber Sample demo integrate with qTest Automation Host
 - Set up new agent with configure Agent below:
 
 ### Agent Configuration
-How to configure Cucumber for Java to run with Java Command Line
-
-- Executable mode: Command
-- Executable home: C:\Program Files\Java\jdk1.7.0_21
-- Command: java
-- Command arguments: -classpath D:\Demo\cucumber-sample\target; cucumber.api.cli.Main -g "com/glue" -p "pretty" "D:\Demo\cucumber-sample\resources\feature"
 
 ![Agent Configuration](/documentation/agent-configuration.png?raw=true)
