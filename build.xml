@@ -50,7 +50,7 @@
         </junit>
     </target>
 
-    <target name="test" depends="compile,compile-test">
+    <target name="all" depends="compile,compile-test">
         <mkdir dir="target/cucumber-junit-report"/>
         <java classname="cucumber.api.cli.Main" fork="false" failonerror="false">
             <classpath refid="classpath"/>
