@@ -12,8 +12,11 @@ Cucumber Sample demo integrate with qTest Automation Host
 - Compile and package cucumber sample into jar file with 
    - Open command prompt in windows or terminal command
    - Run command below to pack sample project into a jar file
+     
      Maven command: maven compile package test
+     
      Ant command: ant all
+     
 - Set up new agent with configure Agent below:
 
 ### Agent Configuration
