@@ -1,0 +1,12 @@
+/target/cucumber-sample-1.0.jar
+/target/cucumber-sample-1.0-tests.jar
+/target/maven-archiver/pom.properties
+/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+/target/test-classes/com/glue/ExampleChars.class
+/target/test-classes/com/glue/GoToWork.class
+/target/test-classes/com/glue/HelloWord.class
+/target/test-classes/com/glue/Login.class
+/target/test-classes/com/glue/RunTest.class
+/target/test-classes/com/sample/Hello.class
+/target/test-classes/com/sample/Person.class
