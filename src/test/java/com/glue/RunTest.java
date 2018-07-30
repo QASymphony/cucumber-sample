@@ -9,11 +9,12 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(dryRun = false,
+                    junit = "--step-notifications",
                     strict = true,
                     features = ".",
                     monochrome = true,
                     glue = "com/glue",
-                    plugin = {"pretty", "html:target/cucumber-html-report"}
+                    plugin = {"pretty"}
                 )
 public class RunTest {
 }
