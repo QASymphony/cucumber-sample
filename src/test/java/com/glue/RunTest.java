@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
                     features = ".",
                     monochrome = true,
                     glue = "com/glue",
-                    plugin = {"pretty"}
+                    plugin = {"pretty", "junit:output.xml"}
                 )
 public class RunTest {
 }

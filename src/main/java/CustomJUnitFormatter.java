@@ -1,8 +1,8 @@
 /**
- * This is custom Junit formatter
+ * This is custom Junit formatter base on Junit formatter
  * Scenario is a test suite tag
  * Given, When, Then is a testcase tag
- * Modified by Tam Vo
+ * Created and Modified by Tam Vo
  */
 package cucumber.runtime.formatter;
 
@@ -26,11 +26,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -39,9 +36,9 @@ import java.util.List;
 import java.util.Locale;
 
 final class CustomJUnitFormatter implements EventListener, StrictAware {
-    private final Writer out;
-    private final Document doc;
-    private final Element rootElement;
+    private String resultFolder;
+    private  Document doc;
+    private  Element rootElement;
 
     private TestCase testCase;
     private Element root;
@@ -77,26 +74,22 @@ final class CustomJUnitFormatter implements EventListener, StrictAware {
             handleTestCaseFinished(event);
         }
     };
-    private EventHandler<TestRunFinished> runFinishedHandler = new EventHandler<TestRunFinished>() {
-        @Override
-        public void receive(TestRunFinished event) {
-            finishReport();
-        }
-    };
+//    private EventHandler<TestRunFinished> runFinishedHandler = new EventHandler<TestRunFinished>() {
+//        @Override
+//        public void receive(TestRunFinished event) {
+//            finishReport();
+//        }
+//    };
 
-    public CustomJUnitFormatter(URL out) throws IOException {
-        this.out = new UTF8OutputStreamWriter(new URLOutputStream(out));
+    public CustomJUnitFormatter(String out) throws IOException {
+        resultFolder = out != null ? out : "cucumber-junit-report";
+        String workingDir = System.getProperty("user.dir");
+        System.out.println("Current working directory : " + workingDir);
+        new File(workingDir, resultFolder).mkdirs();
         TestCase.treatConditionallySkippedAsFailure = false;
         TestCase.currentFeatureFile = null;
         TestCase.previousTestCaseName = "";
         TestCase.exampleNumber = 1;
-        try {
-            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-            rootElement = doc.createElement("testsuite");
-            doc.appendChild(rootElement);
-        } catch (ParserConfigurationException e) {
-            throw new CucumberException("Error while processing unit report", e);
-        }
     }
 
     @Override
@@ -106,7 +99,7 @@ final class CustomJUnitFormatter implements EventListener, StrictAware {
         publisher.registerHandlerFor(TestCaseFinished.class, caseFinishedHandler);
         publisher.registerHandlerFor(TestStepStarted.class, stepStartedHandler);
         publisher.registerHandlerFor(TestStepFinished.class, stepFinishedHandler);
-        publisher.registerHandlerFor(TestRunFinished.class, runFinishedHandler);
+//        publisher.registerHandlerFor(TestRunFinished.class, runFinishedHandler);
     }
 
     private void handleTestSourceRead(TestSourceRead event) {
@@ -114,6 +107,13 @@ final class CustomJUnitFormatter implements EventListener, StrictAware {
     }
 
     private void handleTestCaseStarted(TestCaseStarted event) {
+        try {
+            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+            rootElement = doc.createElement("testsuite");
+            doc.appendChild(rootElement);
+        } catch (ParserConfigurationException e) {
+            throw new CucumberException("Error while processing unit report", e);
+        }
         if (TestCase.currentFeatureFile == null || !TestCase.currentFeatureFile.equals(event.testCase.getUri())) {
             TestCase.currentFeatureFile = event.testCase.getUri();
         }
@@ -144,10 +144,19 @@ final class CustomJUnitFormatter implements EventListener, StrictAware {
         rootElement.setAttribute("failures", String.valueOf(rootElement.getElementsByTagName("failure").getLength()));
         rootElement.setAttribute("skipped", String.valueOf(rootElement.getElementsByTagName("skipped").getLength()));
         rootElement.setAttribute("time", sumTimes(rootElement.getElementsByTagName("testcase")));
+        String fileName = testsuite.getName().replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
+        String testCaseResultFile = this.resultFolder + "/" + fileName + ".xml";
+        try {
+            URL url = new File(testCaseResultFile).toURI().toURL();
+            finishReport(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void finishReport() {
+    private void finishReport(URL outFile) {
         try {
+            Writer out = new UTF8OutputStreamWriter(new URLOutputStream(outFile));
             TransformerFactory transfac = TransformerFactory.newInstance();
             Transformer trans = transfac.newTransformer();
             trans.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -155,8 +164,11 @@ final class CustomJUnitFormatter implements EventListener, StrictAware {
             DOMSource source = new DOMSource(doc);
             trans.transform(source, result);
             closeQuietly(out);
+            System.out.println("Generated result xml file in " + outFile.toString());
         } catch (TransformerException e) {
             throw new CucumberException("Error while transforming.", e);
+        } catch (IOException e) {
+            throw new CucumberException("Error:", e);
         }
     }
 

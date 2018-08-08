@@ -88,7 +88,7 @@ task cucumber() {
 				// 'cucumber.runtime.formatter.CypherFormatter:target/cucumber/cypher.txt', 
 				'--plugin',
 				'json:target/cucumber/cucumber.json', 
-				'--plugin', 'cucumber.runtime.formatter.CustomJUnitFormatter:cucumber-junit-result.xml',
+				'--plugin', 'cucumber.runtime.formatter.CustomJUnitFormatter:cucumber-junit-report',
 				'--glue', 
 				// 'com.uscc.security.authentication.agentcellsite',
 				'com/glue',
