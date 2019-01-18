@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class TestUtil {
@@ -18,13 +19,21 @@ public class TestUtil {
         }
         return "/resources/drivers/linux/chromedriver";
     }
+
+    private static void setExecutableMode(String path) {
+        final File file = new File(path);
+        file.setReadable(true, false);
+        file.setExecutable(true, false);
+        file.setWritable(true, false);
+    }
     public static WebDriver openChromeBrowser (String baseURL) {
         WebDriver driver = null;
         try{
-            String chromeDriverPath = getChromeDriverPath();
+            String chromeDriverPath = System.getProperty("user.dir") + getChromeDriverPath();
+            setExecutableMode(chromeDriverPath);
             System.out.println("---- Opening chrome browser");
             DesiredCapabilities capability = new DesiredCapabilities();
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + chromeDriverPath);
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
             capability.setJavascriptEnabled(true);
             capability.setCapability("chrome.switches", "--start-maximized");
             capability.setCapability(ChromeOptions.CAPABILITY, new ChromeOptions());
