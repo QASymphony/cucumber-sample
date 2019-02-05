@@ -1,24 +1,6 @@
 ### Cucumber Sample Demo 
 
-This package includes sample java code integrate with Cucumber testing framework.
+This repo includes a sample Cucumber project for qTest Automation Host integration demonstration. Refer to below article to learn how to integrate this project with qTest Automation Host.
 
-This package can be compiled with Maven / Ant
-
-Cucumber Sample demo integrate with qTest Automation Host
-
-### How to use sample package to integrate with qTest Automation Host
-- First, setup qTest Automation Host. And install Cucumber for Java framework in qTest Automation Host.
-- Download Cucumber sample package and unzip in your directory (eg: D:\Demo\cucumber-sample).
-- Compile and package cucumber sample into jar file with 
-   - Open command prompt in windows or terminal command
-   - Run command below to pack sample project into a jar file
-     
-     Maven command: mvn compile package test
-     
-     Ant command: ant all
-     
-- Set up new agent with configure Agent below:
-
-### Agent Configuration
-
-![Agent Configuration](/documentation/agent-configuration.png?raw=true)
+1. [Integrate Cucumber with Universal Agent (Elite users only)](https://support.qasymphony.com/hc/en-us/articles/360005093671-Integrate-Cucumber-with-Universal-Agent)
+2. [Create Cucumber for Java Agent from Automation Host (for non-Elite users)](https://support.qasymphony.com/hc/en-us/articles/115005558743)
