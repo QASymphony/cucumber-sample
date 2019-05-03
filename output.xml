@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite failures="4" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="9" time="0.057051">
-    <testcase classname="Browser Test" name="Search qTest Launch" time="0.042288">
-        <failure message="java.lang.NullPointerException&#10;&#9;at com.glue.BrowserTest.searchFor(BrowserTest.java:22)&#10;&#9;at ✽.I search for &quot;qTest Launch&quot;(./resources/feature/browser.feature:4)&#10;">
+<testsuite failures="3" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="9" time="8.473476">
+    <testcase classname="Browser Test" name="Search qTest Launch" time="8.453555">
+        <system-out>
             <![CDATA[Given I am on the QASymphony website........................................passed
-When I search for "qTest Launch"............................................failed
-Then I should see qTest Launch item on the Search page......................skipped
-
-StackTrace:
-java.lang.NullPointerException
-	at com.glue.BrowserTest.searchFor(BrowserTest.java:22)
-	at ✽.I search for "qTest Launch"(./resources/feature/browser.feature:4)
+When I search for "qTest Launch"............................................passed
+Then I should see qTest Launch item on the Search page......................passed
 ]]>
-        </failure>
+        </system-out>
     </testcase>
-    <testcase classname="Example of a feature file" name="A simple passing scenario =&gt; PASSED" time="0.002925">
+    <testcase classname="Example of a feature file" name="A simple passing scenario =&gt; PASSED" time="0.003952">
         <system-out>
             <![CDATA[Given the letter "A"........................................................passed
 When I check the letter.....................................................passed
@@ -21,7 +16,7 @@ Then the letter should be "A"...............................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Example of a feature file" name="A simple passing scenario =&gt; FAILED" time="0.001889">
+    <testcase classname="Example of a feature file" name="A simple passing scenario =&gt; FAILED" time="0.005546">
         <failure message="org.junit.ComparisonFailure: expected:&lt;[E]&gt; but was:&lt;[A]&gt;&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:115)&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:144)&#10;&#9;at com.glue.ExampleChars.the_letter_should_be(ExampleChars.java:28)&#10;&#9;at ✽.the letter should be &quot;A&quot;(./resources/feature/example.feature:16)&#10;">
             <![CDATA[Given the letter "E"........................................................passed
 When I check the letter.....................................................passed
@@ -36,7 +31,7 @@ org.junit.ComparisonFailure: expected:<[E]> but was:<[A]>
 ]]>
         </failure>
     </testcase>
-    <testcase classname="During the week every person should go to work, but should not go in the weekends." name="It is Monday morning  =&gt; PASSED" time="0.002156">
+    <testcase classname="During the week every person should go to work, but should not go in the weekends." name="It is Monday morning  =&gt; PASSED" time="0.00229">
         <system-out>
             <![CDATA[Given There is a person.....................................................passed
 And it is not weekend.......................................................passed
@@ -45,7 +40,7 @@ Then the person should get up and go to work................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="During the week every person should go to work, but should not go in the weekends." name="It is Saturday morning  =&gt; PASSED" time="0.001094">
+    <testcase classname="During the week every person should go to work, but should not go in the weekends." name="It is Saturday morning  =&gt; PASSED" time="0.001534">
         <system-out>
             <![CDATA[Given There is a person.....................................................passed
 And it is weekend...........................................................passed
@@ -54,7 +49,7 @@ Then the person should not get up and go to work............................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Hello World" name="Say hello =&gt; PASSED" time="0.002046">
+    <testcase classname="Hello World" name="Say hello =&gt; PASSED" time="0.001885">
         <system-out>
             <![CDATA[Given I have a hello app with "Howdy".......................................passed
 When I ask it to say hi.....................................................passed
@@ -62,7 +57,7 @@ Then it should answer with "Howdy World"....................................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="Hello World" name="Welcome John =&gt; PASSED" time="0.00155">
+    <testcase classname="Hello World" name="Welcome John =&gt; PASSED" time="0.001148">
         <failure message="org.junit.ComparisonFailure: expected:&lt;Welcome [John]&gt; but was:&lt;Welcome [World]&gt;&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:115)&#10;&#9;at org.junit.Assert.assertEquals(Assert.java:144)&#10;&#9;at com.glue.HelloWord.it_should_answer_with(HelloWord.java:30)&#10;&#9;at ✽.it should answer with &quot;Welcome John&quot;(./resources/feature/helloword.feature:11)&#10;">
             <![CDATA[Given I have a hello app with "Welcome".....................................passed
 When I ask it to say hi.....................................................passed
@@ -77,7 +72,7 @@ org.junit.ComparisonFailure: expected:<Welcome [John]> but was:<Welcome [World]>
 ]]>
         </failure>
     </testcase>
-    <testcase classname="login to the system. As a user, I want to login into the system when I provide username and password" name="Verify that user can login to qTest site =&gt; PASSED" time="0.001907">
+    <testcase classname="login to the system. As a user, I want to login into the system when I provide username and password" name="Verify that user can login to qTest site =&gt; PASSED" time="0.001752">
         <system-out>
             <![CDATA[Given I launch "http://192.168.74.69:8487/tc" page..........................passed
 When I fill in "userName" with "nephelelocal@gmail.com".....................passed
@@ -87,7 +82,7 @@ Then I should see text "Nephele Local" in right side pane...................pass
 ]]>
         </system-out>
     </testcase>
-    <testcase classname="new feature name" name="test scenario" time="0.001196">
+    <testcase classname="new feature name" name="test scenario" time="0.001814">
         <failure message="The scenario has pending or undefined step(s)">
             <![CDATA[Given I am doing something..................................................undefined
 When I check the letter.....................................................skipped

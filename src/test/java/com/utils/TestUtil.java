@@ -38,6 +38,7 @@ public class TestUtil {
                                         .build();
             ChromeOptions options = new ChromeOptions();
             options.setCapability("chrome.switches", "--start-maximized");
+            driver = new ChromeDriver(service, options);
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
