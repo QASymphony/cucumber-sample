@@ -31,15 +31,13 @@ public class TestUtil {
         try{
             String chromeDriverPath = System.getProperty("user.dir") + getChromeDriverPath();
             setExecutableMode(chromeDriverPath);
-            System.out.println("---- Opening chrome browser");
-            DesiredCapabilities capability = new DesiredCapabilities();
-            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-            capability.setJavascriptEnabled(true);
-            capability.setCapability("chrome.switches", "--start-maximized");
-            capability.setCapability(ChromeOptions.CAPABILITY, new ChromeOptions());
-            capability = DesiredCapabilities.chrome();
-            capability.setBrowserName("chrome");
-            driver = new ChromeDriver(capability);
+            System.out.println("---- Opening chrome browser"); 
+            ChromeDriverService service = new ChromeDriverService.Builder()
+                                        .usingDriverExecutable(new File(chromeDriverPath))
+                                        .usingAnyFreePort()
+                                        .build();
+            ChromeOptions options = new ChromeOptions();
+            options.setCapability("chrome.switches", "--start-maximized");
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
