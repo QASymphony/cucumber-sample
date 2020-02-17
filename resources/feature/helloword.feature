@@ -1,5 +1,3 @@
-Feature: Hello World
-
  Scenario: Say hello => PASSED
  Given I have a hello app with "Howdy"
  When I ask it to say hi
