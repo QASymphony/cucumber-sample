@@ -12,7 +12,7 @@ import cucumber.api.java.en.When;
 public class BrowserTest {
     private WebDriver driver;
 
-    @Given("^I am on the QASymphony website$")
+    @Given("^I am on the Tricentis website$")
     public void navigateToQASymphonySite() {
         driver = TestUtil.openChromeBrowser("https://www.qasymphony.com/");
     }
