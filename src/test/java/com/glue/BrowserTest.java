@@ -19,9 +19,9 @@ public class BrowserTest {
 
     @When("^I search for \"(.*)\"$")
     public void searchFor(String query) {
-        WebElement searchIconElement = driver.findElement(By.xpath("//*[@id='page']/header/div/div[2]/div/div/div[3]/div/div/form/button"));
+        WebElement searchIconElement = driver.findElement(By.xpath("//*[@id=\"page\"]/header/div/div[2]/div/div/div[3]/div/div/form/button"));
         searchIconElement.click();
-        WebElement searchInputElement = driver.findElement(By.xpath("//*[@id='page']/header/div/div[2]/div/div/div[3]/div/div/form/label/input"));
+        WebElement searchInputElement = driver.findElement(By.xpath("//*[@id=\"page\"]/header/div/div[2]/div/div/div[3]/div/div/form/label/input"));
 
         searchInputElement.sendKeys(query);
         searchInputElement.submit();
@@ -29,7 +29,7 @@ public class BrowserTest {
 
     @Then("^I should see qTest Launch item on the Search Result page$")
     public void checkSearchResult() {
-        final WebElement qTestLaunchBoxElement = driver.findElement(By.xpath("//*[@id='content']/div/div/div[2]/div/article[5]/a]"));
+        final WebElement qTestLaunchBoxElement = driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/div[2]/div/article[5]/a]"));
         new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return qTestLaunchBoxElement.isDisplayed();
