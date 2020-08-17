@@ -14,7 +14,7 @@ public class BrowserTest {
 
     @Given("^I am on the Tricentis website$")
     public void navigateToQASymphonySite() {
-        driver = TestUtil.openChromeBrowser("https://www.qasymphony.com/");
+        driver = TestUtil.openChromeBrowser("https://www.tricentis.com/");
     }
 
     @When("^I search for \"(.*)\"$")
